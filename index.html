@@ -4,146 +4,123 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lucky Minds - Sorteio LUCKY #001</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Estilos para os cards */
+    body {
+      background-color: #9952c5;
+      font-family: "Comfortaa", sans-serif;
+    }
+
     .card {
       background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 12px; /* Bordas mais arredondadas */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
       padding: 20px;
       margin-bottom: 20px;
       width: 20%;
     }
 
-    /* Estilos para o título e subtítulo */
-    h1 {
-      font-size: 48px; /* Tamanho aumentado para 2x */
-      margin-bottom: 10px;
-      text-align: center; /* Centralizar o título */
+    h1.title-large {
+      font-size: 72px;
+      margin-bottom: 5px; /* Adiciona margem inferior ao título */
     }
 
-    h2 {
-      font-size: 27px; /* Tamanho aumentado para 1.5x */
-      margin-bottom: 10px;
-      text-align: center; /* Centralizar o subtítulo */
+    .title-medium {
+      font-size: 30px;
+      margin-top: 5px; /* Diminui a margem superior do subtítulo */
+      text-align: center; /* Centraliza o subtítulo */
     }
 
-    /* Estilos para o cronômetro */
-    .countdown {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-
-    /* Estilos para a imagem de premiação */
     .prize-image {
       max-width: 100%;
       display: block;
       margin: 0 auto;
-      margin-bottom: 10px; /* Adicionado para espaçamento abaixo da imagem */
+      margin-bottom: 10px;
     }
 
-    /* Estilos para a div principal */
     .container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: 10%;
     }
 
-    /* Estilos para os cards abaixo do card da premiação */
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
     .secondary-card {
-      width: 40%;
+      background-color: #ffffff;
+      border-radius: 12px; /* Bordas mais arredondadas */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+      padding: 10px;
+      margin-bottom: 20px;
+      width: calc(50% - 10px);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .secondary-card + .secondary-card {
+      margin-left: 20px;
+    }
+
+    .prize-card {
+      background-color: #ffffff;
+      border-radius: 12px; /* Bordas mais arredondadas */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+      padding: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      text-align: center; /* Centralizar texto */
+      display: flex; /* Centralizar verticalmente */
+      flex-direction: column; /* Centralizar verticalmente */
+      align-items: center; /* Centralizar verticalmente */
     }
 
     .secondary-container {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      justify-content: flex-end;
+      width: 100%;
     }
 
-    .secondary-card:nth-child(odd) {
-      margin-right: 20px;
-    }
-
-    .secondary-card:nth-child(even) {
-      margin-left: 20px;
-    }
-
-    @media screen and (max-width: 768px) {
-      /* Estilos para telas menores */
-      .card {
-        width: 90%;
-      }
-
-      .secondary-card {
-        width: 90%;
-      }
-
-      .secondary-card:nth-child(odd),
-      .secondary-card:nth-child(even) {
-        margin-right: 0;
-        margin-left: 0;
-        margin-bottom: 20px;
-      }
+    .empty-container {
+      flex-grow: 1;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <h1>Lucky Minds</h1>
-      <h2>Sorteio LUCKY #001</h2>
-    </div>
+  <div class="header-container">
+    <h1 class="title-large">Lucky Minds</h1>
+    <h2 class="title-medium">Sorteio LUCKY #001</h2>
   </div>
 
   <div class="container">
-    <div class="card">
-      <h2>Premiação</h2>
+    <div class="empty-container"></div>
+    <div class="prize-card">
+      <h2 class="title-medium">Premiação</h2>
       <img class="prize-image" src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/tier3.png?raw=true" alt="Imagem de premiação">
-      <p>1 Land Otherdeed #4575</p> <!-- Adicionado texto do prêmio abaixo da imagem -->
+      <p>1 Land Otherdeed #4575</p>
+    </div>
+
+    <div class="secondary-container">
+      <div class="secondary-card">
+        <h2>Valor do mint</h2>
+        <p style="margin-top: auto; margin-bottom: auto;">19 MATIC</p>
+      </div>
+
+      <div class="secondary-card">
+        <h2>Cronômetro com início do Mint</h2>
+        <p class="countdown">01/junho/23 às 18:00h</p>
+      </div>
     </div>
   </div>
-
-  <div class="container secondary-container">
-    <div class="secondary-card">
-      <h2>Valor do mint</h2>
-      <p>19 MATIC</p>
-    </div>
-
-    <div class="secondary-card">
-      <h2>Informações sobre sold out e quantidade de tokens mintados</h2>
-      <!-- Adicione o código JavaScript para exibir os tokens mintados em tempo real aqui -->
-    </div>
-
-    <div class="secondary-card">
-      <h2>Cronômetro com término do Mint</h2>
-      <p class="countdown" id="countdown"></p>
-    </div>
-  </div>
-
-  <script>
-    // Código JavaScript para o cronômetro
-    const countdownElement = document.getElementById('countdown');
-    const endDate = new Date('2023-06-01T18:00:00');
-
-    function updateCountdown() {
-      const now = new Date();
-      const timeLeft = endDate - now;
-
-      if (timeLeft < 0) {
-        countdownElement.textContent = 'O mint terminou.';
-      } else {
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-        countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
-    }
-
-    setInterval(updateCountdown, 1000);
-  </script>
 </body>
 </html>
