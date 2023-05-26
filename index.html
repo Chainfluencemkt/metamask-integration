@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Metamask Integration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.0/web3.min.js"></script>
+</head>
+<body>
+    <button id="connectButton">Connect to Metamask</button>
+    <div id="account"></div>
+    <div id="balance"></div>
+
+    <script>
+        let web3;
+        let account;
+        let balance;
+
+        document.getElementById('connectButton').addEventListener('click', async () => {
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    web3 = new Web3(window.ethereum);
+                    const accounts = await web3.eth.getAccounts();
+                    account = accounts[0];
+                    document.getElementById('account').innerText = "Account: " + account;
+                    balance = await web3.eth.getBalance(account);
+                    document.getElementById('balance').innerText = "Balance: " + web3.utils.fromWei(balance, "ether") + " ETH";
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                alert('Please install Metamask.');
+            }
+        });
+    </script>
+</body>
+</html>
