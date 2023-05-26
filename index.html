@@ -6,6 +6,7 @@
 </head>
 <body>
     <button id="connectButton">Connect to Metamask</button>
+    <div id="network"></div>
     <div id="account"></div>
     <div id="balance"></div>
 
@@ -13,17 +14,50 @@
         let web3;
         let account;
         let balance;
+        let tokenSymbol = "ETH";  // Default token symbol
+
+        const updateNetwork = async () => {
+            const networkId = await web3.eth.net.getId();
+            let network;
+            switch(networkId) {
+                case 1: network = "Ethereum Mainnet"; tokenSymbol = "ETH"; break;
+                case 3: network = "Ropsten Testnet"; tokenSymbol = "ETH"; break;
+                case 4: network = "Rinkeby Testnet"; tokenSymbol = "ETH"; break;
+                case 42: network = "Kovan Testnet"; tokenSymbol = "ETH"; break;
+                case 56: network = "Binance Smart Chain"; tokenSymbol = "BNB"; break;
+                case 137: network = "Polygon Mainnet"; tokenSymbol = "MATIC"; break;
+                case 2000: network = "Dogechain Mainnet"; tokenSymbol = "DOGE"; break;
+                case 43114: network = "Avalanche C-Chain"; tokenSymbol = "AVAX"; break;
+                default: network = "Unknown network"; tokenSymbol = "UNKNOWN"; break;
+            }
+            document.getElementById('network').innerText = "Network: " + network;
+        };
+
+        const updateAccount = async () => {
+            const accounts = await web3.eth.getAccounts();
+            account = accounts[0];
+            document.getElementById('account').innerText = "Account: " + account;
+        };
+
+        const updateBalance = async () => {
+            balance = await web3.eth.getBalance(account);
+            document.getElementById('balance').innerText = "Balance: " + web3.utils.fromWei(balance, "ether") + " " + tokenSymbol;
+        };
+
+        const updatePage = async () => {
+            await updateNetwork();
+            await updateAccount();
+            await updateBalance();
+        };
 
         document.getElementById('connectButton').addEventListener('click', async () => {
             if (window.ethereum) {
                 try {
                     await window.ethereum.request({ method: 'eth_requestAccounts' });
                     web3 = new Web3(window.ethereum);
-                    const accounts = await web3.eth.getAccounts();
-                    account = accounts[0];
-                    document.getElementById('account').innerText = "Account: " + account;
-                    balance = await web3.eth.getBalance(account);
-                    document.getElementById('balance').innerText = "Balance: " + web3.utils.fromWei(balance, "ether") + " ETH";
+                    await updatePage();
+                    window.ethereum.on('chainChanged', updatePage);
+                    window.ethereum.on('accountsChanged', updatePage);
                 } catch (error) {
                     console.error(error);
                 }
