@@ -40,6 +40,7 @@
       max-width: 100%;
       display: block;
       margin: 0 auto;
+      margin-bottom: 10px; /* Adicionado para espaçamento abaixo da imagem */
     }
 
     /* Estilos para a div principal */
@@ -55,6 +56,20 @@
       width: 40%;
     }
 
+    .secondary-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .secondary-card:nth-child(odd) {
+      margin-right: 20px;
+    }
+
+    .secondary-card:nth-child(even) {
+      margin-left: 20px;
+    }
+
     @media screen and (max-width: 768px) {
       /* Estilos para telas menores */
       .card {
@@ -63,6 +78,13 @@
 
       .secondary-card {
         width: 90%;
+      }
+
+      .secondary-card:nth-child(odd),
+      .secondary-card:nth-child(even) {
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -79,10 +101,11 @@
     <div class="card">
       <h2>Premiação</h2>
       <img class="prize-image" src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/tier3.png?raw=true" alt="Imagem de premiação">
+      <p>1 Land Otherdeed #4575</p> <!-- Adicionado texto do prêmio abaixo da imagem -->
     </div>
   </div>
 
-  <div class="container">
+  <div class="container secondary-container">
     <div class="secondary-card">
       <h2>Valor do mint</h2>
       <p>19 MATIC</p>
@@ -92,9 +115,7 @@
       <h2>Informações sobre sold out e quantidade de tokens mintados</h2>
       <!-- Adicione o código JavaScript para exibir os tokens mintados em tempo real aqui -->
     </div>
-  </div>
 
-  <div class="container">
     <div class="secondary-card">
       <h2>Cronômetro com término do Mint</h2>
       <p class="countdown" id="countdown"></p>
