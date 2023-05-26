@@ -14,12 +14,12 @@
     <script>
         let web3;
         let account;
-        const apiKey = 'YourApiKeyToken'; // 3PNJ2F52AV896S45KRMCXGSD988TB84MW4
+        const apiKey = 'YourApiKeyToken'; 3PNJ2F52AV896S45KRMCXGSD988TB84MW4
 
         document.getElementById('connectButton').addEventListener('click', async () => {
             if (window.ethereum) {
                 try {
-                    await window.ethereum.enable();
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
                     web3 = new Web3(window.ethereum);
                     const accounts = await web3.eth.getAccounts();
                     account = accounts[0];
