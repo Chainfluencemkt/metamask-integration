@@ -17,13 +17,15 @@
 
     /* Estilos para o título e subtítulo */
     h1 {
-      font-size: 24px;
+      font-size: 48px; /* Tamanho aumentado para 2x */
       margin-bottom: 10px;
+      text-align: center; /* Centralizar o título */
     }
 
     h2 {
-      font-size: 18px;
+      font-size: 27px; /* Tamanho aumentado para 1.5x */
       margin-bottom: 10px;
+      text-align: center; /* Centralizar o subtítulo */
     }
 
     /* Estilos para o cronômetro */
@@ -32,33 +34,71 @@
       font-weight: bold;
       margin-top: 20px;
     }
+
+    /* Estilos para a imagem de premiação */
+    .prize-image {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Estilos para a div principal */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* Estilos para os cards abaixo do card da premiação */
+    .secondary-card {
+      width: 40%;
+    }
+
+    @media screen and (max-width: 768px) {
+      /* Estilos para telas menores */
+      .card {
+        width: 90%;
+      }
+
+      .secondary-card {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Lucky Minds</h1>
-    <h2>Sorteio LUCKY #001</h2>
+  <div class="container">
+    <div class="card">
+      <h1>Lucky Minds</h1>
+      <h2>Sorteio LUCKY #001</h2>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Premiação</h2>
-    <p>1 Land Otherdeed #4575</p>
-    <!-- Adicione o elemento gráfico da NFT aqui -->
+  <div class="container">
+    <div class="card">
+      <h2>Premiação</h2>
+      <img class="prize-image" src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/tier3.png?raw=true" alt="Imagem de premiação">
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Valor do mint</h2>
-    <p>19 MATIC</p>
+  <div class="container">
+    <div class="secondary-card">
+      <h2>Valor do mint</h2>
+      <p>19 MATIC</p>
+    </div>
+
+    <div class="secondary-card">
+      <h2>Informações sobre sold out e quantidade de tokens mintados</h2>
+      <!-- Adicione o código JavaScript para exibir os tokens mintados em tempo real aqui -->
+    </div>
   </div>
 
-  <div class="card">
-    <h2>Informações sobre sold out e quantidade de tokens mintados</h2>
-    <!-- Adicione o código JavaScript para exibir os tokens mintados em tempo real aqui -->
-  </div>
-
-  <div class="card">
-    <h2>Cronômetro com término do Mint</h2>
-    <p class="countdown" id="countdown"></p>
+  <div class="container">
+    <div class="secondary-card">
+      <h2>Cronômetro com término do Mint</h2>
+      <p class="countdown" id="countdown"></p>
+    </div>
   </div>
 
   <script>
