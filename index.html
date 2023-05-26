@@ -17,10 +17,6 @@
         }
 
         .form-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
             max-width: 400px;
             margin: 0 auto;
             border: 1px solid #ccc;
@@ -49,14 +45,16 @@
         <label for="nftImage">URL da Imagem:</label>
         <input type="text" id="nftImage" placeholder="Digite a URL da imagem">
 
-        <input type="submit" value="Mint" onclick="mintNFT()">
+        <input type="button" value="Mint" onclick="mintNFT()">
     </div>
 
     <script>
         function mintNFT() {
+            var nftName = document.getElementById("nftName").value;
+            var nftImage = document.getElementById("nftImage").value;
+
             // Aqui você pode adicionar o código JavaScript para realizar o minting do NFT
             // Utilize a biblioteca ether.js para interagir com o contrato inteligente
-            // Você pode usar a função document.getElementById() para obter os valores dos campos de entrada
             // Realize as validações necessárias e execute a chamada de função do contrato para realizar o minting
             // Exiba feedback ao usuário, como mensagens de sucesso ou erro
         }
