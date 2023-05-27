@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #9952c5;
+      background-color: #1c142c;
       font-family: "Comfortaa", sans-serif;
       position: relative;
     }
@@ -18,7 +19,6 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       padding: 20px;
       margin-bottom: 20px;
-      width: 30%;
     }
 
     h1.title-large {
@@ -46,11 +46,10 @@
     .container {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center; /* Alterado para centralizar os cards no eixo horizontal */
+      justify-content: flex-start;
       max-width: 600px;
-      margin-left: auto;
-      margin-right: 10%;
-      margin-top: -40px; /* Ajuste o valor conforme necessário */
+      margin: 0 auto;
     }
 
     .header-container {
@@ -80,7 +79,7 @@
       align-items: center;
     }
 
-    .secondary-card + .secondary-card {
+    .secondary-card+.secondary-card {
       margin-left: 20px;
     }
 
@@ -95,6 +94,32 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    .mint-button-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .mint-button {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .card-four {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      width: calc(50% - 10px);
+      margin: 0 auto;
     }
 
     .secondary-container {
@@ -121,11 +146,42 @@
       pointer-events: none;
       z-index: -1;
     }
+
+    .countdown {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* Nova classe para posicionar os cards à direita */
+    .cards-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 100%;
+    }
+
+    /* Alterações para posicionar o Card 4 e o botão de mint no centro */
+    .center-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+
+    .center-container .card-four,
+    .center-container .mint-button-container {
+      margin-left: auto;
+      margin-right: auto;
+    }
   </style>
 </head>
+
 <body>
   <div class="background-overlay"></div>
-  
+
   <div class="header-container">
     <div>
       <img class="logo" src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/Logo%20Lucky%20Branca%20sem%20fundo.png?raw=true" alt="Logomarca Lucky Minds" onload="resizeImage(this, 0.5)">
@@ -142,14 +198,28 @@
     </div>
 
     <div class="secondary-container">
-      <div class="secondary-card card">
-        <h2>Valor do mint</h2>
-        <p style="margin-top: auto; margin-bottom: auto;">19 MATIC</p>
+      <div class="cards-right"> <!-- Nova div para posicionar os cards à direita -->
+        <div class="secondary-card card">
+          <h2>Valor do mint</h2>
+          <p style="margin-top: auto; margin-bottom: auto;">19 MATIC</p>
+        </div>
+
+        <div class="secondary-card card">
+          <p class="countdown"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="center-container">
+      <div class="card-four card">
+        <h2>Card 4</h2>
+        <p>Conteúdo do card 4</p>
       </div>
 
-      <div class="secondary-card card">
-        <h2>Cronômetro com início do Mint</h2>
-        <p class="countdown">01/junho/23 às 18:00h</p>
+      <div class="mint-button-container">
+        <div class="mint-button">
+          <button onclick="mint()" style="cursor: pointer;">Mint</button>
+        </div>
       </div>
     </div>
   </div>
@@ -161,6 +231,28 @@
       img.style.maxWidth = width + "px";
       img.style.height = "auto";
     }
+
+    function mint() {
+      // Lógica do botão de mint
+      console.log("Minting...");
+    }
+
+    function updateCountdown() {
+      var startDate = new Date('2023-06-01T18:00:00Z');
+      var currentDate = new Date();
+      var timeRemaining = startDate - currentDate;
+
+      var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      var countdownElement = document.querySelector('.countdown');
+      countdownElement.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+    }
+
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
+
 </html>
