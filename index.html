@@ -1,258 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lucky Minds - Sorteio LUCKY #001</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background-color: #1c142c;
-      font-family: "Comfortaa", sans-serif;
-      position: relative;
-    }
+    <title>Página de Mint de NFT</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://github.com/Chainfluencemkt/metamask-integration/blob/main/Fundo.png?raw=true');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-    .card {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
+        #header {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            background-image: url('https://github.com/Chainfluencemkt/metamask-integration/blob/main/Barra%20Superior.png?raw=true');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-    h1.title-large {
-      font-size: 72px;
-      margin-bottom: 5px;
-    }
+        #social-icons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
 
-    .title-medium {
-      font-size: 30px;
-      margin-top: 5px;
-      text-align: left;
-      margin-left: 20px;
-      margin-bottom: 20px;
-    }
+        #social-icons img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+        }
 
-    .prize-image {
-      display: block;
-      margin: 0 auto;
-      margin-bottom: 10px;
-      max-width: 100%;
-      height: auto;
-      max-height: 400px;
-    }
+        #prize-image {
+            position: absolute;
+            top: 120px;
+            left: 0;
+            width: 100%;
+        }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* Alterado para centralizar os cards no eixo horizontal */
-      justify-content: flex-start;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+        #mint-container {
+            position: absolute;
+            top: 250px;
+            left: 0;
+            width: 100%;
+        }
 
-    .header-container {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      margin-top: 20px;
-      margin-left: 20px;
-      margin-right: 50px;
-    }
+        #mint-button {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-    .logo {
-      margin-right: 20px;
-    }
+        #input-bar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-    .secondary-card {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      margin-bottom: 20px;
-      width: calc(50% - 10px);
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .secondary-card+.secondary-card {
-      margin-left: 20px;
-    }
-
-    .prize-card {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      margin-bottom: 20px;
-      width: 100%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .mint-button-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .mint-button {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .card-four {
-      background-color: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      margin-bottom: 20px;
-      width: calc(50% - 10px);
-      margin: 0 auto;
-    }
-
-    .secondary-container {
-      display: flex;
-      justify-content: flex-end;
-      width: 100%;
-    }
-
-    .empty-container {
-      flex-grow: 1;
-    }
-
-    /* Adicionando a imagem de fundo */
-    .background-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("https://github.com/Chainfluencemkt/metamask-integration/blob/main/tier3.png?raw=true");
-      background-size: cover;
-      background-position: center;
-      opacity: 0.75;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .countdown {
-      font-size: 24px;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    /* Nova classe para posicionar os cards à direita */
-    .cards-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      width: 100%;
-    }
-
-    /* Alterações para posicionar o Card 4 e o botão de mint no centro */
-    .center-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      text-align: center;
-    }
-
-    .center-container .card-four,
-    .center-container .mint-button-container {
-      margin-left: auto;
-      margin-right: auto;
-    }
-  </style>
+        #input-bar img {
+            width: 300px;
+            height: 100px;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="background-overlay"></div>
-
-  <div class="header-container">
-    <div>
-      <img class="logo" src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/Logo%20Lucky%20Branca%20sem%20fundo.png?raw=true" alt="Logomarca Lucky Minds" onload="resizeImage(this, 0.5)">
-    </div>
-    <h2 class="title-medium">Sorteio LUCKY #001</h2>
-  </div>
-
-  <div class="container">
-    <div class="empty-container"></div>
-    <div class="prize-card card">
-      <h2 class="title-medium">Premiação</h2>
-      <img class="prize-image" src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/b0b2d8a1-dd20-4f0b-9ea9-2dc0a4c3842c.png?raw=true" alt="Imagem de premiação">
-      <p>1 Land Otherdeed #4575</p>
-    </div>
-
-    <div class="secondary-container">
-      <div class="cards-right"> <!-- Nova div para posicionar os cards à direita -->
-        <div class="secondary-card card">
-          <h2>Valor do mint</h2>
-          <p style="margin-top: auto; margin-bottom: auto;">19 MATIC</p>
+    <div id="header">
+        <div id="social-icons">
+            <img src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/1.png?raw=true" alt="Social Icon 1">
+            <img src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/2.png?raw=true" alt="Social Icon 2">
+            <img src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/3.png?raw=true" alt="Social Icon 3">
+            <img src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/4.png?raw=true" alt="Social Icon 4">
         </div>
-
-        <div class="secondary-card card">
-          <p class="countdown"></p>
-        </div>
-      </div>
     </div>
 
-    <div class="center-container">
-      <div class="card-four card">
-        <h2>Card 4</h2>
-        <p>Conteúdo do card 4</p>
-      </div>
+    <img id="prize-image" src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/Form-Land.png?raw=true" alt="Prize Image">
 
-      <div class="mint-button-container">
-        <div class="mint-button">
-          <button onclick="mint()" style="cursor: pointer;">Mint</button>
-        </div>
-      </div>
+    <img id="mint-container" src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/Form-MINT.png?raw=true" alt="Mint Container">
+
+    <button id="mint-button">Mintar NFT</button>
+
+    <div id="input-bar">
+        <img src="https://github.com/Chainfluencemkt/metamask-integration/blob/main/Form-insere-valor.png?raw=true" alt="Input Bar">
     </div>
-  </div>
 
-  <script>
-    function resizeImage(img, scale) {
-      var width = img.naturalWidth * scale;
-      var height = img.naturalHeight * scale;
-      img.style.maxWidth = width + "px";
-      img.style.height = "auto";
-    }
-
-    function mint() {
-      // Lógica do botão de mint
-      console.log("Minting...");
-    }
-
-    function updateCountdown() {
-      var startDate = new Date('2023-06-01T18:00:00Z');
-      var currentDate = new Date();
-      var timeRemaining = startDate - currentDate;
-
-      var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-      var countdownElement = document.querySelector('.countdown');
-      countdownElement.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-    }
-
-    setInterval(updateCountdown, 1000);
-  </script>
+    <script>
+        // Seu código JavaScript personalizado pode ser adicionado aqui, se necessário.
+    </script>
 </body>
-
 </html>
